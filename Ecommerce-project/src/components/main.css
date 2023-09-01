@@ -1,0 +1,43 @@
+.all-products {
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .product-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .product-card {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    background-color: #fff;
+  }
+  
+  .product-image {
+    width: 100%;
+    max-height: 150px;
+    object-fit: cover;
+  }
+  
+  .product-title {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+  }
+  
+  .product-price {
+    font-size: 1.2rem;
+    color: #b12704;
+    margin-top: 0.5rem;
+  }
+  
+  .product-category {
+    color: #666;
+    margin-top: 0.5rem;
+  }
+  
+  .product-description {
+    margin-top: 1rem;
+  }
+  
