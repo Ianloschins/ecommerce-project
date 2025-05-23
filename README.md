@@ -15,6 +15,7 @@ ecommerce-project/
 └── README.md
 
 🚀 Features
+
 ✅ React + Vite frontend with modern component-based architecture
 
 ✅ Backend with Express.js and Prisma ORM
@@ -26,6 +27,7 @@ ecommerce-project/
 🛠️ API endpoints for product management
 
 🧰 Tech Stack
+
 Frontend: React, Vite
 
 Backend: Node.js, Express
@@ -70,4 +72,5 @@ Authentication & authorization
 Responsive design improvements
 
 Admin dashboard for product & non-Admin users
+-> Creativity Processing  🧠 
 
