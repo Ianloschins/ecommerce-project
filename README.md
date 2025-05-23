@@ -43,6 +43,7 @@ ________________________________________________________________________________
 1. Clone the repository:
 
 git clone https://github.com/Ianloschins/ecommerce-project.git
+
 cd ecommerce-project
 
 2. Setup the frontend:
@@ -72,5 +73,6 @@ Authentication & authorization
 Responsive design improvements
 
 Admin dashboard for product & non-Admin users
+
 -> Creativity Processing  🧠 
 
