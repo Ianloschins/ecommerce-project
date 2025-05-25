@@ -1,4 +1,3 @@
-/* Shared login/register form styles */
 .form-container {
   max-width: 400px;
   margin: 4rem auto;
@@ -58,9 +57,19 @@
   text-decoration: underline;
 }
 
+.success {
+  color: #2e7d32;
+  background-color: #e8f5e9;
+  padding: 0.5rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}
+
 .error {
   color: #e53935;
   font-size: 0.9rem;
+  margin-top: 0.5rem;
 }
 
 .logout-button {
@@ -75,19 +84,10 @@
   text-decoration: underline;
 }
 
-.success {
-  color: #2e7d32;
-  background-color: #e8f5e9;
-  padding: 0.5rem;
-  border-radius: 4px;
+.bulk-upload-top {
+  display: flex;
+  justify-content: flex-end;
   margin-bottom: 1rem;
-  font-size: 0.95rem;
-}
-
-.error {
-  color: red;
-  margin-top: 0.5rem;
-  font-size: 0.9rem;
 }
 
 .bulk-upload-btn {
@@ -101,14 +101,9 @@
   cursor: pointer;
   margin-top: 1rem;
 }
+
 .bulk-upload-btn input {
   display: none;
-}
-
-.bulk-upload-top {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 1rem;
 }
 
 .upload-btn {

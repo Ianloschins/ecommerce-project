@@ -1,53 +1,64 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { loginUser } from '../api/api';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Login({ setUser }) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [form, setForm] = useState({ emailOrUsername: "", password: "" });
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleSubmit = async (e) => {
+  const handleChange = (e) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleLogin = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
-      const res = await loginUser({ email, password });
-      if (res.error) {
-        setError(res.error);
-      } else {
-        localStorage.setItem('user', JSON.stringify(res.user));
-        setUser(res.user);
-        navigate('/');
-        window.location.reload(); // force state update in App.jsx
+      const res = await fetch("http://localhost:5555/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Login failed");
+        return;
       }
-    } catch {
-      setError('Login failed');
+
+      localStorage.setItem("user", JSON.stringify(data.user));
+      setUser(data.user);
+      navigate("/user");
+    } catch (err) {
+      console.error("Login error:", err);
+      setError("Something went wrong");
     }
   };
 
   return (
     <div className="form-container">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit} className="login-form">
+      <form onSubmit={handleLogin}>
         <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          name="emailOrUsername"
+          placeholder="Email or Username"
+          value={form.emailOrUsername}
+          onChange={handleChange}
           required
         />
         <input
           type="password"
+          name="password"
           placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={form.password}
+          onChange={handleChange}
           required
         />
-        {error && <p className="error">{error}</p>}
         <button type="submit">Login</button>
-        <p>No account? <a href="/register">Register here</a></p>
+        {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
       </form>
     </div>
   );
