@@ -15,10 +15,38 @@ model Product {
   category    String
   description String
   image       String
+  sellerId    Int?
+  likes       Like[]
+  seller      User?   @relation("ProductsSold", fields: [sellerId], references: [id], onDelete: SetNull)
 }
 
 model User {
-  id       Int    @id @default(autoincrement())
-  email    String @unique
-  password String
+  id             Int             @id @default(autoincrement())
+  email          String          @unique
+  username       String          @unique
+  profileImage   String?
+  profileZoom    Float           @default(1)
+  profileFocusX  Float           @default(50)
+  profileFocusY  Float           @default(50)
+  password       String
+  likes          Like[]
+  soldProducts   Product[]       @relation("ProductsSold")
+  productManager ProductManager?
+}
+
+model ProductManager {
+  id        Int      @id @default(autoincrement())
+  userId    Int      @unique
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Like {
+  id        Int     @id @default(autoincrement())
+  userId    Int
+  productId Int
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  product   Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, productId])
 }

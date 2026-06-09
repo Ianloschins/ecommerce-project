@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../styles/loginAndRegister.css';
 
 function Register() {
@@ -34,7 +34,9 @@ function Register() {
         <input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
         <button type="submit">Register</button>
         {error && <p className="error">{error}</p>}
-        <p>Already have an account? <a href="/login">Login</a></p>
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
       </form>
     </div>
   );

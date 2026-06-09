@@ -3,31 +3,40 @@ import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import "../styles/main.css";
+import heroImage from "../styles/img/view-spectacular-nature-landscape.jpg";
+import mensImage from "../styles/img/full-shot-man-posing-outdoors.jpg";
+import womensImage from "../styles/img/black-woman-trench-coat-dancing-sunlight.jpg";
+import shoesImage from "../styles/img/fixing-sneakers.jpg";
 
+// Renders the homepage hero, collections, and rotating product feature.
 function Home() {
+  // Defines the collection cards shown under the hero.
   const collections = [
     {
       name: "Mens Collection",
-      img: "../src/styles/img/full-shot-man-posing-outdoors.jpg",
+      img: mensImage,
       link: "/products/mens",
     },
     {
       name: "Womens Collection",
-      img: "../src/styles/img/black-woman-trench-coat-dancing-sunlight.jpg",
+      img: womensImage,
       link: "/products/womens",
     },
     {
       name: "Shoes Collection",
-      img: "../src/styles/img/fixing-sneakers.jpg",
+      img: shoesImage,
       link: "/products/shoes",
     },
   ];
 
+  // Stores products and animation state for the rotating feature.
   const [products, setProducts] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [fadeStage, setFadeStage] = useState("in");
 
+  // Loads products for the homepage feature.
   useEffect(() => {
+    // Fetches products from the backend.
     async function fetchProducts() {
       try {
         const res = await fetch("http://localhost:5555/products");
@@ -40,6 +49,7 @@ function Home() {
     fetchProducts();
   }, []);
 
+  // Rotates the featured product with a fade transition.
   useEffect(() => {
     const interval = setInterval(() => {
       setFadeStage("out");
@@ -55,14 +65,16 @@ function Home() {
     return () => clearInterval(interval);
   }, [products]);
 
+  // Selects the product currently shown in the rotating feature.
   const rotatingProduct = products[currentIndex];
 
   return (
     <div className="fw-light text-secondary">
+      {/* Shows the main homepage hero. */}
       <section
         className="background-cover bg-dark pb-5 position-relative pt-5 text-white"
         style={{
-          backgroundImage: `url('../src/styles/img/view-spectacular-nature-landscape.jpg')`,
+          backgroundImage: `url(${heroImage})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundPosition: "center",
@@ -93,6 +105,7 @@ function Home() {
       <main className="pb-5 pt-5">
         <section>
           <div className="container">
+            {/* Shows category collection cards. */}
             <div className="row justify-content-center">
               {collections.map((section, i) => (
                 <div key={i} className="col-lg-4 col-md-6 py-3">
@@ -116,6 +129,7 @@ function Home() {
               ))}
             </div>
 
+            {/* Shows the rotating featured product. */}
             {rotatingProduct && (
               <div
                 className="position-relative mt-5"
@@ -166,7 +180,7 @@ function Home() {
             )}
           </div>
 
-          {/* Fixed class -> className issue here */}
+          {/* Shows the popular products section heading. */}
           <div
             className="align-items-center row"
             style={{ marginTop: "50px" }}

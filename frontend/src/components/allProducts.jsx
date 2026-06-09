@@ -1,20 +1,29 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import { fetchAllProducts, fetchUserLikes, likeProduct, unlikeProduct } from '../api/api.js';
+import { addCartItem } from '../utils/cart.js';
 import '../styles/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+// Renders product listings with filtering, likes, cart actions, and pagination.
 function AllProducts({ category: routeCategory }) {
+  // Stores product data, filters, user likes, and pagination state.
   const [products, setProducts] = useState([]);
   const [filtered, setFiltered] = useState([]);
   const [likes, setLikes] = useState([]);
+  const [addedProductId, setAddedProductId] = useState(null);
   const [category, setCategory] = useState('All');
   const [currentPage, setCurrentPage] = useState(1);
   const PRODUCTS_PER_PAGE = 12;
-  const params = useParams();
-  const user = JSON.parse(localStorage.getItem("user"));
 
+  // Reads route and login context for filtering and likes.
+  const params = useParams();
+  const [user] = useState(() => JSON.parse(localStorage.getItem("user")));
+
+  // Loads products and liked items.
   useEffect(() => {
+    // Fetches products and saved likes from the backend.
     async function load() {
       try {
         const data = await fetchAllProducts();
@@ -32,6 +41,7 @@ function AllProducts({ category: routeCategory }) {
     load();
   }, [user]);
 
+  // Applies category filtering whenever products or route filters change.
   useEffect(() => {
     const activeCategory = routeCategory || params.category || category;
 
@@ -47,6 +57,7 @@ function AllProducts({ category: routeCategory }) {
     setCurrentPage(1);
   }, [category, products, routeCategory, params.category]);
 
+  // Saves or removes a liked product.
   const toggleLike = async (productId) => {
     if (!user) return alert("Please log in to like products.");
     const isLiked = likes.includes(productId);
@@ -63,6 +74,14 @@ function AllProducts({ category: routeCategory }) {
     }
   };
 
+  // Adds a product to the local cart.
+  const handleAddToCart = (product) => {
+    addCartItem(product);
+    setAddedProductId(product.id);
+    window.setTimeout(() => setAddedProductId(null), 1200);
+  };
+
+  // Calculates pagination values.
   const totalPages = Math.ceil(filtered.length / PRODUCTS_PER_PAGE);
   const paginated = filtered.slice(
     (currentPage - 1) * PRODUCTS_PER_PAGE,
@@ -75,6 +94,7 @@ function AllProducts({ category: routeCategory }) {
         {params.category ? `${params.category} Collection` : 'Featured Products'}
       </h1>
 
+      {/* Shows the category dropdown on the full collection page. */}
       {!routeCategory && !params.category && (
         <div className="text-end mb-4">
           <select
@@ -90,6 +110,7 @@ function AllProducts({ category: routeCategory }) {
         </div>
       )}
 
+      {/* Shows the paginated product grid. */}
       <div className="row g-4"
         style={{
           marginBottom: '100px',
@@ -111,22 +132,38 @@ function AllProducts({ category: routeCategory }) {
               <div className="card-body">
                 <h5 className="card-title fw-semibold text-dark">{product.title}</h5>
                 <p className="text-muted mb-1">Category: {product.category}</p>
+                {product.seller?.username && (
+                  <p className="text-muted mb-1">Seller: {product.seller.username}</p>
+                )}
                 <p className="fw-bold text-danger mb-1">${product.price}</p>
                 <p className="text-secondary small">{product.description}</p>
-                {user && (
+                {/* Shows cart and like actions. */}
+                <div className="d-flex flex-wrap gap-2">
                   <button
-                    className={`btn btn-sm ${likes.includes(product.id) ? 'btn-danger' : 'btn-outline-danger'}`}
-                    onClick={() => toggleLike(product.id)}
+                    type="button"
+                    className="btn btn-sm btn-dark"
+                    onClick={() => handleAddToCart(product)}
                   >
-                    {likes.includes(product.id) ? '❤️ Liked' : '♡ Like'}
+                    <i className="bi bi-cart-plus"></i>{" "}
+                    {addedProductId === product.id ? "Added" : "Add to Cart"}
                   </button>
-                )}
+                  {user && (
+                    <button
+                      type="button"
+                      className={`btn btn-sm ${likes.includes(product.id) ? 'btn-danger' : 'btn-outline-danger'}`}
+                      onClick={() => toggleLike(product.id)}
+                    >
+                      {likes.includes(product.id) ? '❤️ Liked' : '♡ Like'}
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>
         ))}
       </div>
 
+      {/* Shows pagination controls. */}
       <div className="d-flex justify-content-center align-items-center mt-5 gap-3">
         <button className="btn btn-outline-secondary" onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))} disabled={currentPage === 1}>
           ← Prev
@@ -141,3 +178,8 @@ function AllProducts({ category: routeCategory }) {
 }
 
 export default AllProducts;
+
+// Validates optional category props.
+AllProducts.propTypes = {
+  category: PropTypes.string,
+};

@@ -116,3 +116,716 @@
   align-items: center;
   cursor: pointer;
 }
+
+.account-page {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 0 1rem;
+}
+
+.account-hero {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto auto;
+  gap: 18px;
+  align-items: center;
+  padding: 24px;
+  border-radius: 8px;
+  background: #111827;
+  color: #fff;
+}
+
+.account-avatar {
+  position: relative;
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  overflow: visible;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.profile-avatar-frame {
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  overflow: hidden;
+  border-radius: 50%;
+  background-color: #1a73e8;
+}
+
+.profile-avatar-frame img,
+.profile-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s ease;
+}
+
+.account-avatar:hover .avatar-edit-icon,
+.manager-avatar:hover .avatar-edit-icon {
+  opacity: 1;
+}
+
+.avatar-edit-icon {
+  position: absolute;
+  right: -7px;
+  bottom: -5px;
+  display: grid;
+  width: 28px;
+  height: 28px;
+  place-items: center;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background-color: #111827;
+  color: #fff;
+  font-size: 0.85rem;
+  opacity: 0.92;
+}
+
+.account-eyebrow {
+  margin: 0 0 0.25rem;
+  color: #cbd5e1;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.account-hero h1 {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.account-hero p {
+  margin: 0.25rem 0 0;
+  color: #d1d5db;
+}
+
+.account-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.account-edit-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0.55rem 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.38);
+  border-radius: 6px;
+  background-color: transparent;
+  color: #fff;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.account-edit-btn:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
+
+.account-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 16px 0;
+}
+
+.account-action {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #111827;
+  text-decoration: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.account-action:hover {
+  color: #111827;
+  text-decoration: none;
+  border-color: #1a73e8;
+}
+
+.account-action i {
+  color: #1a73e8;
+  font-size: 1.25rem;
+}
+
+.account-action span {
+  font-weight: 700;
+}
+
+.account-action strong {
+  font-size: 1.25rem;
+}
+
+.account-message {
+  margin: 0 0 16px;
+}
+
+.account-section {
+  padding: 22px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.account-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.account-section-heading h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+.account-section-heading p {
+  margin: 0.25rem 0 0;
+  color: #6b7280;
+}
+
+.account-link-button {
+  padding: 0.55rem 0.9rem;
+  border: 1px solid #111827;
+  border-radius: 6px;
+  color: #111827;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.account-link-button:hover {
+  background-color: #111827;
+  color: #fff;
+  text-decoration: none;
+}
+
+.account-empty {
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+  padding: 34px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+  background-color: #f9fafb;
+  text-align: center;
+}
+
+.account-empty i {
+  color: #dc3545;
+  font-size: 2rem;
+}
+
+.account-empty h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 1.1rem;
+}
+
+.saved-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.saved-item-card {
+  display: grid;
+  grid-template-rows: 170px 1fr;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.saved-item-card img {
+  width: 100%;
+  height: 170px;
+  object-fit: contain;
+  padding: 12px;
+  background-color: #f8f9fa;
+}
+
+.saved-item-body {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+}
+
+.saved-item-body span {
+  color: #6b7280;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.saved-item-body h3 {
+  min-height: 44px;
+  margin: 0;
+  color: #111827;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.saved-item-body strong {
+  color: #b12704;
+  font-size: 1.05rem;
+}
+
+.saved-item-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+}
+
+.saved-remove-btn {
+  display: inline-grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: 1px solid #dc3545;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #dc3545;
+  cursor: pointer;
+}
+
+.saved-remove-btn:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+
+.manager-container {
+  max-width: 1100px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.manager-profile-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 16px;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.manager-edit-btn {
+  border-color: #1a73e8;
+  color: #1a73e8;
+}
+
+.manager-edit-btn:hover {
+  background-color: #e8f1fe;
+}
+
+.manager-avatar {
+  position: relative;
+  display: grid;
+  width: 72px;
+  height: 72px;
+  place-items: center;
+  overflow: visible;
+  border: none;
+  border-radius: 50%;
+  background-color: transparent;
+  color: #fff;
+  font-size: 1.8rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.manager-profile-card h2 {
+  margin: 0;
+  color: #333;
+}
+
+.manager-profile-card p {
+  margin: 0.25rem 0 0;
+  color: #6b7280;
+}
+
+.profile-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background-color: rgba(17, 24, 39, 0.72);
+}
+
+.profile-modal {
+  display: grid;
+  gap: 1rem;
+  width: min(100%, 440px);
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: #fff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.25);
+}
+
+.profile-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.profile-modal-header h2 {
+  margin: 0;
+  color: #111827;
+  font-size: 1.25rem;
+}
+
+.profile-modal-header button {
+  display: grid;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  border: none;
+  border-radius: 50%;
+  background-color: #f3f4f6;
+  color: #111827;
+  cursor: pointer;
+}
+
+.profile-preview {
+  display: grid;
+  width: 120px;
+  height: 120px;
+  place-items: center;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 50%;
+  background-color: #1a73e8;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.profile-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile-modal label {
+  display: grid;
+  gap: 0.4rem;
+  color: #374151;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.account-password-group {
+  display: grid;
+  gap: 0.85rem;
+  padding-top: 0.75rem;
+  border-top: 1px solid #e5e7eb;
+}
+
+.account-password-group h3 {
+  margin: 0;
+  color: #111827;
+  font-size: 1rem;
+}
+
+.profile-modal input {
+  padding: 0.75rem;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+.profile-crop-controls {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.profile-crop-controls input[type="range"] {
+  padding: 0;
+  accent-color: #1a73e8;
+}
+
+.profile-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+.analytics-dashboard {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.analytics-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.analytics-header h3 {
+  margin: 0;
+  color: #111827;
+}
+
+.analytics-header p {
+  margin: 0.25rem 0 0;
+  color: #6b7280;
+}
+
+.refresh-dashboard-btn {
+  align-self: start;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid #1a73e8;
+  border-radius: 6px;
+  background-color: #fff;
+  color: #1a73e8;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.refresh-dashboard-btn:hover {
+  background-color: #e8f1fe;
+}
+
+.analytics-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 1rem;
+}
+
+.analytics-kpis div,
+.analytics-grid section,
+.analytics-donut-panel {
+  padding: 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background-color: #f9fafb;
+}
+
+.analytics-kpis span {
+  display: block;
+  color: #6b7280;
+  font-size: 0.85rem;
+}
+
+.analytics-kpis strong {
+  display: block;
+  margin-top: 0.35rem;
+  color: #111827;
+  font-size: 1.4rem;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.analytics-donut-panel {
+  margin-bottom: 1rem;
+}
+
+.analytics-donut-panel h4 {
+  margin: 0;
+  color: #111827;
+  font-size: 1rem;
+}
+
+.analytics-donut-panel p {
+  margin: 0.25rem 0 1rem;
+  color: #6b7280;
+}
+
+.analytics-donut-wrap {
+  display: grid;
+  grid-template-columns: 190px minmax(0, 1fr);
+  gap: 20px;
+  align-items: center;
+}
+
+.analytics-donut {
+  position: relative;
+  display: grid;
+  width: 180px;
+  height: 180px;
+  place-items: center;
+  border-radius: 50%;
+}
+
+.analytics-donut::before {
+  position: absolute;
+  width: 112px;
+  height: 112px;
+  border-radius: 50%;
+  background-color: #fff;
+  content: "";
+}
+
+.analytics-donut span,
+.analytics-donut small {
+  position: relative;
+  z-index: 1;
+  line-height: 1;
+}
+
+.analytics-donut span {
+  align-self: end;
+  color: #111827;
+  font-size: 1.8rem;
+  font-weight: 800;
+}
+
+.analytics-donut small {
+  align-self: start;
+  color: #6b7280;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.analytics-legend {
+  display: grid;
+  gap: 8px;
+}
+
+.analytics-legend div {
+  display: grid;
+  grid-template-columns: 14px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.analytics-legend span {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.analytics-legend strong {
+  overflow: hidden;
+  color: #374151;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.analytics-legend small {
+  color: #6b7280;
+  font-weight: 700;
+}
+
+.analytics-grid h4 {
+  margin: 0 0 0.75rem;
+  color: #111827;
+  font-size: 1rem;
+}
+
+.analytics-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
+  gap: 10px;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-top: 1px solid #e5e7eb;
+}
+
+.analytics-row:first-of-type {
+  border-top: none;
+}
+
+.analytics-row span {
+  overflow: hidden;
+  color: #374151;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.analytics-row small {
+  color: #6b7280;
+}
+
+@media (max-width: 768px) {
+  .account-page {
+    margin: 1.5rem auto;
+  }
+
+  .account-hero,
+  .account-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .account-hero {
+    justify-items: start;
+  }
+
+  .account-section-heading {
+    display: grid;
+  }
+
+  .manager-container {
+    margin: 1.5rem 1rem;
+    padding: 1rem;
+  }
+
+  .manager-profile-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .analytics-header {
+    display: block;
+  }
+
+  .analytics-kpis,
+  .analytics-grid,
+  .analytics-donut-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .analytics-donut {
+    margin: 0 auto;
+  }
+
+  .analytics-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+
+  .analytics-row small {
+    grid-column: 1 / -1;
+  }
+}

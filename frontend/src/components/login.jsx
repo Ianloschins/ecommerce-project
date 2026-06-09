@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function Login({ setUser }) {
-  const [form, setForm] = useState({ emailOrUsername: "", password: "" });
+  const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
@@ -28,6 +29,7 @@ export default function Login({ setUser }) {
         return;
       }
 
+      localStorage.setItem("token", data.token);
       localStorage.setItem("user", JSON.stringify(data.user));
       setUser(data.user);
       navigate("/user");
@@ -42,10 +44,10 @@ export default function Login({ setUser }) {
       <h2>Login</h2>
       <form onSubmit={handleLogin}>
         <input
-          type="text"
-          name="emailOrUsername"
-          placeholder="Email or Username"
-          value={form.emailOrUsername}
+          type="email"
+          name="email"
+          placeholder="Email"
+          value={form.email}
           onChange={handleChange}
           required
         />
@@ -59,7 +61,14 @@ export default function Login({ setUser }) {
         />
         <button type="submit">Login</button>
         {error && <p style={{ color: "red", marginTop: "10px" }}>{error}</p>}
+        <p>
+          Don&apos;t have an account? <Link to="/register">Register</Link>
+        </p>
       </form>
     </div>
   );
 }
+
+Login.propTypes = {
+  setUser: PropTypes.func.isRequired,
+};

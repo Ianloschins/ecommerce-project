@@ -1,0 +1,1 @@
+ALTER TABLE "User" ADD COLUMN "super_user" BOOLEAN NOT NULL DEFAULT false;
